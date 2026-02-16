@@ -1,0 +1,138 @@
+<mxfile host="draw.io" modified="2026-02-15" agent="vllm-mindmap" version="24.0.0" type="device">
+  <diagram id="api-server" name="API Server Architecture">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="600" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="title" value="vLLM API Server — Request Flow" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=18;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="450" y="15" width="700" height="35" as="geometry"/>
+        </mxCell>
+
+        <!-- Row 1: Main flow (single horizontal line) -->
+        <mxCell id="http_req" value="HTTP&#xa;Request" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="30" y="170" width="100" height="55" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="middleware" value="CORS + Auth&#xa;Middleware" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="180" y="170" width="120" height="55" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="router" value="FastAPI&#xa;Router" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="350" y="170" width="110" height="55" as="geometry"/>
+        </mxCell>
+
+        <!-- 3 endpoints stacked vertically, shifted right with clear spacing -->
+        <mxCell id="ep_chat" value="/v1/chat/completions" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="80" width="170" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="ep_comp" value="/v1/completions" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="180" width="170" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="ep_embed" value="/v1/embeddings" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="280" width="170" height="36" as="geometry"/>
+        </mxCell>
+
+        <!-- InputProcessor - merge point -->
+        <mxCell id="input_proc" value="Input&#xa;Processor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="750" y="170" width="110" height="55" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="async_llm" value="AsyncLLM" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7030A0;fontColor=#FFFFFF;strokeColor=#4A1F6B;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="910" y="170" width="110" height="55" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="engine_zmq" value="EngineCore&#xa;via ZMQ" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7030A0;fontColor=#FFFFFF;strokeColor=#4A1F6B;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1070" y="170" width="110" height="55" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="output_proc" value="Output&#xa;Processor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1230" y="170" width="110" height="55" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="resp_json" value="JSON&#xa;Response" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1400" y="130" width="100" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="resp_sse" value="SSE&#xa;Stream" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1400" y="220" width="100" height="45" as="geometry"/>
+        </mxCell>
+
+        <!-- Main horizontal arrows (clean, no overlap) -->
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#2F5496;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="http_req" target="middleware" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#2F5496;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="middleware" target="router" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Router → 3 endpoints (fan out from right side of router) -->
+        <mxCell id="e3a" style="rounded=1;strokeColor=#548235;strokeWidth=2;exitX=1;exitY=0.25;entryX=0;entryY=0.5;" edge="1" source="router" target="ep_chat" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3b" style="rounded=1;strokeColor=#548235;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="router" target="ep_comp" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3c" style="rounded=1;strokeColor=#548235;strokeWidth=2;exitX=1;exitY=0.75;entryX=0;entryY=0.5;" edge="1" source="router" target="ep_embed" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- 3 endpoints → InputProcessor (fan in to left side of InputProcessor) -->
+        <mxCell id="e4a" style="rounded=1;strokeColor=#2F5496;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.25;" edge="1" source="ep_chat" target="input_proc" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e4b" style="rounded=1;strokeColor=#2F5496;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="ep_comp" target="input_proc" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e4c" style="rounded=1;strokeColor=#2F5496;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.75;" edge="1" source="ep_embed" target="input_proc" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Remaining horizontal arrows -->
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#4A1F6B;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="input_proc" target="async_llm" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#4A1F6B;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="async_llm" target="engine_zmq" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#2F5496;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" source="engine_zmq" target="output_proc" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- OutputProcessor → Responses (fan out) -->
+        <mxCell id="e8a" style="rounded=1;strokeColor=#548235;strokeWidth=2;exitX=1;exitY=0.3;entryX=0;entryY=0.5;" edge="1" source="output_proc" target="resp_json" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e8b" style="rounded=1;strokeColor=#548235;strokeWidth=2;exitX=1;exitY=0.7;entryX=0;entryY=0.5;" edge="1" source="output_proc" target="resp_sse" parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Layer labels -->
+        <mxCell id="l1" value="API Layer" style="text;html=1;align=center;fontSize=11;fontStyle=1;fontColor=#2F5496;" vertex="1" parent="1">
+          <mxGeometry x="60" y="60" width="300" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="l2" value="Routing" style="text;html=1;align=center;fontSize=11;fontStyle=1;fontColor=#548235;" vertex="1" parent="1">
+          <mxGeometry x="540" y="60" width="120" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="l3" value="Engine Layer" style="text;html=1;align=center;fontSize=11;fontStyle=1;fontColor=#4A1F6B;" vertex="1" parent="1">
+          <mxGeometry x="900" y="60" width="290" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="l4" value="Response" style="text;html=1;align=center;fontSize=11;fontStyle=1;fontColor=#548235;" vertex="1" parent="1">
+          <mxGeometry x="1400" y="60" width="100" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- Protocol labels -->
+        <mxCell id="p1" value="HTTP/S" style="text;html=1;align=center;fontSize=9;fontStyle=2;fontColor=#A5A5A5;" vertex="1" parent="1">
+          <mxGeometry x="130" y="230" width="50" height="15" as="geometry"/>
+        </mxCell>
+        <mxCell id="p2" value="ZMQ IPC" style="text;html=1;align=center;fontSize=9;fontStyle=2;fontColor=#A5A5A5;" vertex="1" parent="1">
+          <mxGeometry x="1010" y="230" width="55" height="15" as="geometry"/>
+        </mxCell>
+
+        <!-- Footer -->
+        <mxCell id="footer" value="Ref: docs.vllm.ai/en/latest/serving/openai_compatible_server.html" style="text;html=1;align=center;fontSize=9;fontStyle=2;fontColor=#A5A5A5;" vertex="1" parent="1">
+          <mxGeometry x="500" y="360" width="500" height="15" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

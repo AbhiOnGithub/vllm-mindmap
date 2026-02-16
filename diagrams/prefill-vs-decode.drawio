@@ -1,0 +1,52 @@
+<mxfile host="draw.io" modified="2026-02-15" agent="vllm-mindmap" version="24.0.0" type="device">
+  <diagram id="pvd" name="Prefill vs Decode">
+    <mxGraphModel dx="800" dy="400" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="800" pageHeight="340" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="Prefill vs Decode: Two Phases of LLM Inference" style="text;html=1;fontSize=15;fontStyle=1;align=center;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="150" y="8" width="500" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="ph1" value="PREFILL Phase" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="45" width="340" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="p1" value="Process ALL prompt tokens at once" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="30" y="90" width="340" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="p2" value="Compute-bound (GPU cores busy)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="30" y="125" width="340" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="p3" value="Fills KV cache with K,V for all tokens" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="30" y="160" width="340" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="p4" value="Determines TTFT (Time to First Token)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="30" y="195" width="340" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="ph2" value="DECODE Phase" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="45" width="340" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="d1" value="Generate ONE token at a time" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="430" y="90" width="340" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="d2" value="Memory-bound (reading KV cache)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="430" y="125" width="340" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="d3" value="Reads all cached K,V + appends new K,V" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="430" y="160" width="340" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="d4" value="Determines ITL (Inter-Token Latency)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="430" y="195" width="340" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="arrow" style="rounded=1;strokeColor=#333333;strokeWidth=3;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="ph1" target="ph2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="arrow_lbl" value="then" style="edgeLabel;html=1;fontSize=11;fontStyle=1;fontColor=#333333;" vertex="1" connectable="0" parent="arrow">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="insight" value="vLLM runs BOTH phases in the same batch (continuous batching) — some requests prefill while others decode" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7030A0;fontColor=#FFFFFF;strokeColor=#4A1F6B;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="250" width="600" height="30" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

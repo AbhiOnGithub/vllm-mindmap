@@ -1,0 +1,94 @@
+<mxfile host="draw.io" modified="2026-02-15" agent="vllm-mindmap" version="24.0.0" type="device">
+  <diagram id="cb" name="Continuous Batching">
+    <mxGraphModel dx="1100" dy="500" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="420" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="Continuous Batching — Requests Enter and Exit Dynamically" style="text;html=1;fontSize=16;fontStyle=1;align=center;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="200" y="10" width="700" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl_step" value="Step" style="text;html=1;fontSize=11;fontStyle=1;fontColor=#333333;align=center;" vertex="1" parent="1">
+          <mxGeometry x="20" y="50" width="50" height="20" as="geometry"/>
+        </mxCell>
+        <!-- Step N labels -->
+        <mxCell id="sN" value="N" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#A5A5A5;fontColor=#FFFFFF;strokeColor=#757575;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="80" width="50" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="sN1" value="N+1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#A5A5A5;fontColor=#FFFFFF;strokeColor=#757575;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="140" width="50" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="sN2" value="N+2" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#A5A5A5;fontColor=#FFFFFF;strokeColor=#757575;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="200" width="50" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="sN3" value="N+3" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#A5A5A5;fontColor=#FFFFFF;strokeColor=#757575;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="260" width="50" height="40" as="geometry"/>
+        </mxCell>
+        <!-- Step N row -->
+        <mxCell id="n_r1" value="Req A: decode" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="90" y="80" width="160" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="n_r2" value="Req B: prefill (chunk 1/2)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="270" y="80" width="200" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="n_r3" value="Req C: decode" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="490" y="80" width="160" height="40" as="geometry"/>
+        </mxCell>
+        <!-- Step N+1 row -->
+        <mxCell id="n1_r1" value="Req A: decode" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="90" y="140" width="160" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="n1_r2" value="Req B: prefill (chunk 2/2)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="270" y="140" width="200" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="n1_r3" value="Req C: DONE" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF4444;fontColor=#FFFFFF;strokeColor=#CC0000;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="490" y="140" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="n1_r4" value="Req D: prefill (new!)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7030A0;fontColor=#FFFFFF;strokeColor=#4A1F6B;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="630" y="140" width="180" height="40" as="geometry"/>
+        </mxCell>
+        <!-- Step N+2 row -->
+        <mxCell id="n2_r1" value="Req A: decode" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="90" y="200" width="160" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="n2_r2" value="Req B: decode (1st token!)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="270" y="200" width="200" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="n2_r4" value="Req D: decode" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7030A0;fontColor=#FFFFFF;strokeColor=#4A1F6B;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="490" y="200" width="160" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="n2_r5" value="Req E: prefill (new!)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFC000;fontColor=#333333;strokeColor=#BF9000;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="670" y="200" width="180" height="40" as="geometry"/>
+        </mxCell>
+        <!-- Step N+3 row -->
+        <mxCell id="n3_r1" value="Req A: DONE" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF4444;fontColor=#FFFFFF;strokeColor=#CC0000;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="260" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="n3_r2" value="Req B: decode" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="230" y="260" width="160" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="n3_r4" value="Req D: decode" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7030A0;fontColor=#FFFFFF;strokeColor=#4A1F6B;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="410" y="260" width="160" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="n3_r5" value="Req E: decode" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFC000;fontColor=#333333;strokeColor=#BF9000;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="590" y="260" width="160" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="n3_r6" value="Req F: prefill" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="770" y="260" width="150" height="40" as="geometry"/>
+        </mxCell>
+        <!-- Annotations -->
+        <mxCell id="ann1" value="C finishes, slot&#xa;immediately reused" style="text;html=1;fontSize=9;fontStyle=2;fontColor=#CC0000;align=left;" vertex="1" parent="1">
+          <mxGeometry x="830" y="140" width="130" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="ann2" value="New requests join&#xa;without waiting" style="text;html=1;fontSize=9;fontStyle=2;fontColor=#548235;align=left;" vertex="1" parent="1">
+          <mxGeometry x="870" y="200" width="130" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="insight" value="Key: No request waits for others to finish. GPU stays busy 100% of the time." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7030A0;fontColor=#FFFFFF;strokeColor=#4A1F6B;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="330" width="600" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="footer" value="Ref: docs.vllm.ai/en/latest/" style="text;html=1;fontSize=9;fontStyle=2;fontColor=#A5A5A5;align=center;" vertex="1" parent="1">
+          <mxGeometry x="370" y="380" width="250" height="15" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

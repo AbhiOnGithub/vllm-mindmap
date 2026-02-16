@@ -1,0 +1,63 @@
+<mxfile host="draw.io" modified="2026-02-15" agent="vllm-mindmap" version="24.0.0" type="device">
+  <diagram id="model-reg" name="Model Registry">
+    <mxGraphModel dx="1200" dy="600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="500" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="vLLM Model Discovery and Loading Pipeline" style="text;html=1;fontSize=18;fontStyle=1;align=center;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="300" y="10" width="600" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="hf" value="HuggingFace&#xa;config.json" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="70" width="130" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="arch" value="architectures:&#xa;[&quot;LlamaForCausalLM&quot;]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="30" y="150" width="150" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="registry" value="ModelRegistry&#xa;lookup" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="100" width="140" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="cat1" value="TEXT_GENERATION&#xa;(100+ models)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="440" y="55" width="150" height="38" as="geometry"/>
+        </mxCell>
+        <mxCell id="cat2" value="MULTIMODAL&#xa;(40+ models)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="440" y="103" width="150" height="38" as="geometry"/>
+        </mxCell>
+        <mxCell id="cat3" value="EMBEDDING&#xa;(15+ models)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="440" y="151" width="150" height="38" as="geometry"/>
+        </mxCell>
+        <mxCell id="cat4" value="TRANSFORMERS&#xa;(fallback)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#A5A5A5;fontColor=#FFFFFF;strokeColor=#757575;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="440" y="199" width="150" height="38" as="geometry"/>
+        </mxCell>
+        <mxCell id="lazy" value="LazyRegisteredModel&#xa;(avoid CUDA init)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7030A0;fontColor=#FFFFFF;strokeColor=#4A1F6B;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="650" y="110" width="170" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="loader" value="AutoWeightsLoader&#xa;Download safetensors" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="650" y="190" width="170" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="shard" value="Shard for TP/PP" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="650" y="265" width="170" height="38" as="geometry"/>
+        </mxCell>
+        <mxCell id="quant" value="Apply Quantization" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="650" y="330" width="170" height="38" as="geometry"/>
+        </mxCell>
+        <mxCell id="ready" value="Model Ready" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="650" y="400" width="170" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#2F5496;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="hf" target="arch"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e2" style="rounded=1;strokeColor=#548235;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="arch" target="registry"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3a" style="rounded=1;strokeColor=#548235;strokeWidth=2;exitX=1;exitY=0.25;entryX=0;entryY=0.5;" edge="1" parent="1" source="registry" target="cat1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3b" style="rounded=1;strokeColor=#548235;strokeWidth=2;exitX=1;exitY=0.4;entryX=0;entryY=0.5;" edge="1" parent="1" source="registry" target="cat2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3c" style="rounded=1;strokeColor=#548235;strokeWidth=2;exitX=1;exitY=0.6;entryX=0;entryY=0.5;" edge="1" parent="1" source="registry" target="cat3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3d" style="rounded=1;strokeColor=#757575;strokeWidth=2;exitX=1;exitY=0.75;entryX=0;entryY=0.5;" edge="1" parent="1" source="registry" target="cat4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e4" style="rounded=1;strokeColor=#4A1F6B;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="cat2" target="lazy"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#C55A11;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="lazy" target="loader"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#C55A11;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="loader" target="shard"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#C55A11;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="shard" target="quant"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#548235;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="quant" target="ready"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="footer" value="Ref: docs.vllm.ai/en/latest/ → Design Documents → HuggingFace Integration" style="text;html=1;fontSize=9;fontStyle=2;fontColor=#A5A5A5;align=center;" vertex="1" parent="1">
+          <mxGeometry x="300" y="460" width="450" height="15" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,103 @@
+<mxfile host="draw.io" modified="2026-02-15" agent="vllm-mindmap" version="24.0.0" type="device">
+  <diagram id="paged" name="PagedAttention">
+    <mxGraphModel dx="1100" dy="650" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="520" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="PagedAttention: Virtual Block Tables → Physical GPU Memory" style="text;html=1;fontSize=16;fontStyle=1;align=center;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="200" y="10" width="700" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="rA" value="Request A (48 tokens)" style="text;html=1;fontSize=11;fontStyle=1;fontColor=#2F5496;" vertex="1" parent="1">
+          <mxGeometry x="30" y="50" width="180" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="rA0" value="Blk 5" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="72" width="65" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="rA1" value="Blk 12" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="72" width="65" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="rA2" value="Blk 3" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="72" width="65" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="rB" value="Request B (32 tokens)" style="text;html=1;fontSize=11;fontStyle=1;fontColor=#548235;" vertex="1" parent="1">
+          <mxGeometry x="30" y="115" width="180" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="rB0" value="Blk 8" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="137" width="65" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="rB1" value="Blk 1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="137" width="65" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="rC" value="Request C (64 tokens)" style="text;html=1;fontSize=11;fontStyle=1;fontColor=#C55A11;" vertex="1" parent="1">
+          <mxGeometry x="30" y="180" width="180" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="rC0" value="Blk 0" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="202" width="65" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="rC1" value="Blk 7" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="202" width="65" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="rC2" value="Blk 11" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="202" width="65" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="rC3" value="Blk 9" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="202" width="65" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="virt_label" value="Virtual Block Tables (per request)" style="text;html=1;fontSize=10;fontStyle=2;fontColor=#A5A5A5;align=center;" vertex="1" parent="1">
+          <mxGeometry x="50" y="250" width="220" height="15" as="geometry"/>
+        </mxCell>
+        <mxCell id="gpu_label" value="Physical GPU KV Cache Memory (16 tokens/block)" style="text;html=1;fontSize=13;fontStyle=1;align=center;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="400" y="50" width="650" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="p0" value="B0 C" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="400" y="80" width="58" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="p1" value="B1 B" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="463" y="80" width="58" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="p2" value="B2&#xa;free" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#A5A5A5;fontColor=#FFFFFF;strokeColor=#757575;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="526" y="80" width="58" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="p3" value="B3 A" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="589" y="80" width="58" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="p4" value="B4&#xa;free" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#A5A5A5;fontColor=#FFFFFF;strokeColor=#757575;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="652" y="80" width="58" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="p5" value="B5 A" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="715" y="80" width="58" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="p6" value="B6&#xa;free" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#A5A5A5;fontColor=#FFFFFF;strokeColor=#757575;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="778" y="80" width="58" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="p7" value="B7 C" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="841" y="80" width="58" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="p8" value="B8 B" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="904" y="80" width="58" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="p9" value="B9 C" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="967" y="80" width="58" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="p11" value="B11 C" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="400" y="130" width="58" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="p12" value="B12 A" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="463" y="130" width="58" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="p13" value="B13&#xa;free" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#A5A5A5;fontColor=#FFFFFF;strokeColor=#757575;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="526" y="130" width="58" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="insight" value="Key Insight (PagedAttention — SOSP 2023):&#xa;Like virtual memory pages in an OS. Requests get a contiguous virtual view.&#xa;Physical blocks are scattered across GPU memory. No wasted memory on padding!" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7030A0;fontColor=#FFFFFF;strokeColor=#4A1F6B;fontSize=11;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="350" y="200" width="500" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="ar1" style="dashed=1;strokeColor=#2F5496;strokeWidth=2;exitX=1;exitY=0.5;entryX=0.5;entryY=1;" edge="1" parent="1" source="rA0" target="p5"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ar2" style="dashed=1;strokeColor=#2F5496;strokeWidth=2;exitX=1;exitY=0.5;entryX=0.5;entryY=1;" edge="1" parent="1" source="rA1" target="p12"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ar3" style="dashed=1;strokeColor=#2F5496;strokeWidth=2;exitX=1;exitY=0.5;entryX=0.5;entryY=1;" edge="1" parent="1" source="rA2" target="p3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="footer" value="Ref: docs.vllm.ai/en/latest/ → Design Documents → Paged Attention" style="text;html=1;fontSize=9;fontStyle=2;fontColor=#A5A5A5;align=center;" vertex="1" parent="1">
+          <mxGeometry x="350" y="280" width="400" height="15" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

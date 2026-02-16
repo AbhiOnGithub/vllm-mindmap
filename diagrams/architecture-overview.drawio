@@ -1,0 +1,118 @@
+<mxfile host="65bd71144e">
+    <diagram name="V1 Architecture" id="arch">
+        <mxGraphModel dx="870" dy="552" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="880" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="vLLM V1 Engine Architecture" style="text;html=1;fontSize=22;fontStyle=1;align=center;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="230" y="20" width="600" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="p0" value="API Server Process (P0)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=14;fontStyle=1;verticalAlign=top;arcSize=6;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="70" width="380" height="370" as="geometry"/>
+                </mxCell>
+                <mxCell id="fastapi" value="FastAPI Server&#10;(openai/api_server.py)&#10;&#10;/v1/chat/completions&#10;/v1/completions&#10;/v1/embeddings&#10;/v1/models" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="90" y="115" width="320" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="input_p" value="InputProcessor&#10;Tokenize + MM" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="90" y="235" width="145" height="45" as="geometry"/>
+                </mxCell>
+                <mxCell id="output_p" value="OutputProcessor&#10;Detokenize + Stream" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="265" y="235" width="145" height="45" as="geometry"/>
+                </mxCell>
+                <mxCell id="async_llm" value="AsyncLLM (async_llm.py)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7030A0;fontColor=#FFFFFF;strokeColor=#4A1F6B;fontSize=12;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="130" y="305" width="240" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="core_client" value="EngineCoreClient (ZMQ)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7030A0;fontColor=#FFFFFF;strokeColor=#4A1F6B;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="130" y="360" width="240" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="zmq_edge" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=3;strokeColor=#FF4444;" parent="1" source="core_client" target="engine_core" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="zmq_lbl" value="ZMQ / IPC" style="edgeLabel;html=1;fontSize=13;fontStyle=1;fontColor=#FF4444;" parent="zmq_edge" vertex="1" connectable="0">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1" value="EngineCore Process (P1)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=14;fontStyle=1;verticalAlign=top;arcSize=6;" parent="1" vertex="1">
+                    <mxGeometry x="530" y="70" width="420" height="370" as="geometry"/>
+                </mxCell>
+                <mxCell id="engine_core" value="EngineCore (core.py)&#10;Main execution loop" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=12;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="600" y="115" width="280" height="45" as="geometry"/>
+                </mxCell>
+                <mxCell id="scheduler" value="Scheduler&#10;(scheduler.py)&#10;Request queuing&#10;Preemption" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="560" y="185" width="160" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="kv_mgr" value="KVCacheManager&#10;Block allocation&#10;Prefix caching" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="750" y="185" width="160" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="executor" value="Executor&#10;(MultiprocExecutor / RayExecutor)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7030A0;fontColor=#FFFFFF;strokeColor=#4A1F6B;fontSize=12;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="580" y="290" width="300" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="sched_out" value="SchedulerOutput" style="text;html=1;fontSize=10;fontStyle=2;fontColor=#548235;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="610" y="270" width="100" height="15" as="geometry"/>
+                </mxCell>
+                <mxCell id="wk_group" value="GPU Workers (one per GPU)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=14;fontStyle=1;verticalAlign=top;arcSize=6;" parent="1" vertex="1">
+                    <mxGeometry x="130" y="520" width="1080" height="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="g0" value="GPU Worker 0&#10;&#10;GPUModelRunner&#10;Model + Sampler&#10;AttentionBackend" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="165" y="555" width="190" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="g1" value="GPU Worker 1&#10;&#10;GPUModelRunner&#10;Model + Sampler&#10;AttentionBackend" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="385" y="555" width="190" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="g2" value="GPU Worker 2&#10;&#10;GPUModelRunner&#10;Model + Sampler&#10;AttentionBackend" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="605" y="555" width="190" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="dots" value="..." style="text;html=1;fontSize=28;fontStyle=1;align=center;fontColor=#C55A11;" parent="1" vertex="1">
+                    <mxGeometry x="830" y="590" width="60" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="gN" value="GPU Worker N&#10;&#10;GPUModelRunner&#10;Model + Sampler&#10;AttentionBackend" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="920" y="555" width="190" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="nccl_line" style="endArrow=none;dashed=1;strokeColor=#A5A5A5;strokeWidth=2;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="165" y="720" as="sourcePoint"/>
+                        <mxPoint x="1110" y="720" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="nccl_lbl" value="NCCL Communication (AllReduce / Send-Recv)" style="text;html=1;fontSize=11;fontStyle=2;fontColor=#A5A5A5;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="725" width="350" height="18" as="geometry"/>
+                </mxCell>
+                <mxCell id="e1" style="rounded=1;strokeColor=#2F5496;" parent="1" source="fastapi" target="input_p" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e2" style="rounded=1;strokeColor=#2F5496;" parent="1" source="fastapi" target="output_p" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e3" style="rounded=1;strokeColor=#2F5496;" parent="1" source="input_p" target="async_llm" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e4" style="rounded=1;strokeColor=#4A1F6B;" parent="1" source="async_llm" target="core_client" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e5" style="rounded=1;strokeColor=#548235;" parent="1" source="engine_core" target="scheduler" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e6" style="rounded=1;strokeColor=#548235;" parent="1" source="engine_core" target="kv_mgr" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e7" style="rounded=1;strokeColor=#548235;" parent="1" source="scheduler" target="executor" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e8" style="rounded=1;strokeWidth=2;strokeColor=#C55A11;" parent="1" source="executor" target="g0" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e9" style="rounded=1;strokeWidth=2;strokeColor=#C55A11;" parent="1" source="executor" target="g1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e10" style="rounded=1;strokeWidth=2;strokeColor=#C55A11;" parent="1" source="executor" target="g2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e11" style="rounded=1;strokeWidth=2;strokeColor=#C55A11;" parent="1" source="executor" target="gN" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ref" value="Ref: https://docs.vllm.ai/en/latest/ → Design Documents → Architecture Overview" style="text;html=1;fontSize=9;fontStyle=2;fontColor=#A5A5A5;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="350" y="755" width="500" height="15" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

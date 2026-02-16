@@ -1,0 +1,60 @@
+<mxfile host="draw.io" modified="2026-02-15" agent="vllm-mindmap" version="24.0.0" type="device">
+  <diagram id="memsave" name="Memory Savings">
+    <mxGraphModel dx="900" dy="500" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="420" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="Quantization Memory Savings — Llama-3.1-70B Example" style="text;html=1;fontSize=16;fontStyle=1;align=center;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="150" y="10" width="600" height="25" as="geometry"/>
+        </mxCell>
+        <!-- FP16 bar -->
+        <mxCell id="lbl1" value="FP16 (no quant)" style="text;html=1;fontSize=11;fontStyle=1;fontColor=#333333;align=right;" vertex="1" parent="1">
+          <mxGeometry x="30" y="60" width="120" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="bar1" value="140 GB — needs 2x A100 80GB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF4444;fontColor=#FFFFFF;strokeColor=#CC0000;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="55" width="700" height="30" as="geometry"/>
+        </mxCell>
+        <!-- FP8 bar -->
+        <mxCell id="lbl2" value="FP8 (8-bit)" style="text;html=1;fontSize=11;fontStyle=1;fontColor=#333333;align=right;" vertex="1" parent="1">
+          <mxGeometry x="30" y="110" width="120" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="bar2" value="70 GB — fits 1x A100 80GB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="105" width="350" height="30" as="geometry"/>
+        </mxCell>
+        <!-- INT4 bar -->
+        <mxCell id="lbl3" value="INT4 (4-bit)" style="text;html=1;fontSize=11;fontStyle=1;fontColor=#333333;align=right;" vertex="1" parent="1">
+          <mxGeometry x="30" y="160" width="120" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="bar3" value="35 GB — fits 1x A100 40GB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="155" width="175" height="30" as="geometry"/>
+        </mxCell>
+        <!-- GPU reference line -->
+        <mxCell id="gpu_line" style="endArrow=none;dashed=1;strokeColor=#999999;strokeWidth=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="560" y="50" as="sourcePoint"/>
+            <mxPoint x="560" y="200" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gpu_label" value="A100 80GB" style="text;html=1;fontSize=9;fontStyle=2;fontColor=#999999;align=center;" vertex="1" parent="1">
+          <mxGeometry x="530" y="200" width="70" height="15" as="geometry"/>
+        </mxCell>
+        <!-- KV Cache section -->
+        <mxCell id="kv_title" value="KV Cache Quantization (per token)" style="text;html=1;fontSize=13;fontStyle=1;fontColor=#333333;align=center;" vertex="1" parent="1">
+          <mxGeometry x="200" y="240" width="400" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="kv_bf16" value="BF16: 2 bytes/element" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="160" y="270" width="300" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="kv_fp8" value="FP8: 1 byte (50% saved!)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="310" width="150" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="kv_note" value="= 2x more requests can run simultaneously" style="text;html=1;fontSize=10;fontStyle=1;fontColor=#548235;align=left;" vertex="1" parent="1">
+          <mxGeometry x="320" y="315" width="300" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="footer" value="Ref: docs.vllm.ai/en/latest/features/quantization/" style="text;html=1;fontSize=9;fontStyle=2;fontColor=#A5A5A5;align=center;" vertex="1" parent="1">
+          <mxGeometry x="280" y="370" width="300" height="15" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

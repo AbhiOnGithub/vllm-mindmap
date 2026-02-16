@@ -1,0 +1,153 @@
+<mxfile host="draw.io" modified="2026-02-15" agent="draw.io" version="24.0.0" type="device">
+  <diagram id="speculative-decoding" name="Speculative Decoding">
+    <mxGraphModel dx="1422" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="750" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Title -->
+        <mxCell id="title" value="vLLM Speculative Decoding" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=18;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="400" y="20" width="600" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== Draft Phase (Top Row) ==================== -->
+        <mxCell id="draft_label" value="Draft Phase" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontStyle=1;fontColor=#C55A11;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="140" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="draft_model" value="Draft Model&#xa;(small / fast)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="40" y="120" width="150" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="draft_arrow" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#C55A11;strokeWidth=2;" edge="1" source="draft_model" target="tok_proposed_label" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="tok_proposed_label" value="Proposed Tokens" style="text;html=1;align=center;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#C55A11;" vertex="1" parent="1">
+          <mxGeometry x="240" y="120" width="130" height="25" as="geometry" />
+        </mxCell>
+
+        <!-- 5 proposed token boxes -->
+        <mxCell id="tok1" value="The" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="240" y="150" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="tok2" value="cat" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="330" y="150" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="tok3" value="sat" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="420" y="150" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="tok4" value="on" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="510" y="150" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="tok5" value="the" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="600" y="150" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="tok_count" value="5 tokens drafted" style="text;html=1;align=center;verticalAlign=middle;fontSize=10;fontStyle=2;fontColor=#C55A11;" vertex="1" parent="1">
+          <mxGeometry x="700" y="155" width="100" height="25" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== Verify Phase (Bottom Row) ==================== -->
+        <mxCell id="verify_label" value="Verify Phase" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontStyle=1;fontColor=#548235;" vertex="1" parent="1">
+          <mxGeometry x="40" y="240" width="140" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="target_model" value="Target Model&#xa;(large / accurate)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="40" y="280" width="150" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="verify_arrow" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#548235;strokeWidth=2;" edge="1" source="target_model" target="verify_box" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="verify_box" value="Verify all 5&#xa;tokens at once&#xa;(single forward pass)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="240" y="280" width="150" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- Down arrow to results -->
+        <mxCell id="verify_split" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#548235;strokeWidth=2;" edge="1" source="verify_box" target="accept_label" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Accepted tokens -->
+        <mxCell id="accept_label" value="✅ Accepted (4 tokens)" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#548235;" vertex="1" parent="1">
+          <mxGeometry x="240" y="390" width="370" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="acc1" value="The" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="240" y="420" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="acc2" value="cat" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="330" y="420" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="acc3" value="sat" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="420" y="420" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="acc4" value="on" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="510" y="420" width="80" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- Rejected + resampled token -->
+        <mxCell id="reject_label" value="❌ Rejected → Resample" style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#CC0000;" vertex="1" parent="1">
+          <mxGeometry x="650" y="390" width="200" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="rej_old" value="the" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF4444;fontColor=#FFFFFF;strokeColor=#CC0000;fontStyle=1;fontSize=13;textDecoration=line-through;" vertex="1" parent="1">
+          <mxGeometry x="660" y="420" width="70" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="rej_arrow" value="" style="endArrow=classic;rounded=1;strokeColor=#CC0000;strokeWidth=2;fontSize=12;fontStyle=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="740" y="440" as="sourcePoint" />
+            <mxPoint x="780" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rej_new" value="a" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="790" y="420" width="70" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="rej_note" value="Sampled from&#xa;target distribution" style="text;html=1;align=center;verticalAlign=middle;fontSize=9;fontStyle=2;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="780" y="460" width="100" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Result highlight -->
+        <mxCell id="result_box" value="Result: 4 accepted + 1 resampled = 5 tokens in 1 target forward pass!" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7030A0;fontColor=#FFFFFF;strokeColor=#4A1F6B;fontStyle=1;fontSize=14;align=center;" vertex="1" parent="1">
+          <mxGeometry x="200" y="510" width="700" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Connecting lines from accepted/rejected to result -->
+        <mxCell id="res_e1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#4A1F6B;strokeWidth=1;dashed=1;" edge="1" source="acc2" target="result_box" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="res_e2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#4A1F6B;strokeWidth=1;dashed=1;" edge="1" source="rej_new" target="result_box" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- How it works side box -->
+        <mxCell id="how_border" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#4A1F6B;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="950" y="100" width="400" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="how_title" value="How Speculative Decoding Works" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#4A1F6B;" vertex="1" parent="1">
+          <mxGeometry x="980" y="110" width="340" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="how1" value="1. Draft model generates K tokens cheaply" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="970" y="145" width="360" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="how2" value="2. Target model scores all K tokens at once" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="970" y="175" width="360" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="how3" value="3. Accept tokens matching target distribution" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="970" y="205" width="360" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="how4" value="4. First rejection → resample from target" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="970" y="235" width="360" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="how5" value="5. Output is provably identical to target-only!" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="970" y="265" width="360" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="how6" value="Speedup: up to K× for high accept rates" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#7030A0;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="970" y="300" width="360" height="25" as="geometry" />
+        </mxCell>
+
+        <!-- Footer -->
+        <mxCell id="footer" value="Ref: docs.vllm.ai/en/latest/features/spec_decode.html" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=9;fontStyle=2;fontColor=#A5A5A5;" vertex="1" parent="1">
+          <mxGeometry x="400" y="590" width="400" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

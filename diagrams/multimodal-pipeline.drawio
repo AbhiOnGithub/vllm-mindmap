@@ -1,0 +1,51 @@
+<mxfile host="draw.io" modified="2026-02-15" agent="vllm-mindmap" version="24.0.0" type="device">
+  <diagram id="mm" name="Multimodal Pipeline">
+    <mxGraphModel dx="900" dy="300" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="250" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="Multimodal Processing Pipeline" style="text;html=1;fontSize=14;fontStyle=1;align=center;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="250" y="8" width="400" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="input" value="User Input&#xa;(text + image URL)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="55" width="120" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="download" value="Download&#xa;+ Decode" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="170" y="55" width="90" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="resize" value="Resize&#xa;Normalize" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="290" y="55" width="90" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="vision" value="Vision&#xa;Encoder" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="410" y="55" width="90" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="merge" value="Merge&#xa;Text + Vision&#xa;Embeddings" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7030A0;fontColor=#FFFFFF;strokeColor=#4A1F6B;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="530" y="50" width="110" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="llm" value="LLM&#xa;Decoder" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="670" y="55" width="90" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="text_tok" value="Text&#xa;Tokenizer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="290" y="130" width="90" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="placeholder" value="Insert&#xa;Placeholders" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFC000;fontColor=#333333;strokeColor=#BF9000;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="410" y="130" width="90" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="e1" style="rounded=1;strokeColor=#2F5496;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="input" target="download"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e2" style="rounded=1;strokeColor=#C55A11;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="download" target="resize"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3" style="rounded=1;strokeColor=#548235;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="resize" target="vision"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e4" style="rounded=1;strokeColor=#4A1F6B;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="vision" target="merge"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e5" style="rounded=1;strokeColor=#548235;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="merge" target="llm"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e6" style="rounded=1;strokeColor=#BF9000;strokeWidth=1;dashed=1;exitX=1;exitY=0.5;entryX=0.5;entryY=1;" edge="1" parent="1" source="placeholder" target="merge"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e7" style="rounded=1;strokeColor=#2F5496;strokeWidth=1;dashed=1;exitX=0.5;exitY=1;entryX=0;entryY=0.5;" edge="1" parent="1" source="resize" target="text_tok"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e8" style="rounded=1;strokeColor=#BF9000;strokeWidth=1;dashed=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="text_tok" target="placeholder"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="lbl_img" value="Image path" style="text;html=1;fontSize=8;fontStyle=2;fontColor=#A5A5A5;" vertex="1" parent="1">
+          <mxGeometry x="310" y="40" width="60" height="12" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl_txt" value="Text path" style="text;html=1;fontSize=8;fontStyle=2;fontColor=#A5A5A5;" vertex="1" parent="1">
+          <mxGeometry x="310" y="170" width="55" height="12" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

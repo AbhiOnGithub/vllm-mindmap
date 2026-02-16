@@ -1,0 +1,40 @@
+<mxfile host="draw.io" modified="2026-02-15" agent="vllm-mindmap" version="24.0.0" type="device">
+  <diagram id="membudget" name="GPU Memory Budget">
+    <mxGraphModel dx="700" dy="350" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="700" pageHeight="300" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="GPU Memory Budget (A100 80GB Example)" style="text;html=1;fontSize=14;fontStyle=1;align=center;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="100" y="8" width="500" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="bar_bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#A5A5A5;strokeColor=#757575;" vertex="1" parent="1">
+          <mxGeometry x="30" y="50" width="640" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="bar_weights" value="Model Weights&#xa;~16 GB (Llama-8B fp16)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=9;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="50" width="128" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="bar_act" value="Peak Activations&#xa;~2 GB" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=9;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="158" y="50" width="30" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="bar_cuda" value="CUDA&#xa;Graphs&#xa;~4 GB" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#7030A0;fontColor=#FFFFFF;strokeColor=#4A1F6B;fontSize=8;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="188" y="50" width="32" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="bar_kv" value="KV Cache&#xa;~50 GB (controlled by --gpu-memory-utilization)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="220" y="50" width="400" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="bar_free" value="Free&#xa;~8 GB" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#A5A5A5;fontColor=#FFFFFF;strokeColor=#757575;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="620" y="50" width="50" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="total" value="Total: 80 GB" style="text;html=1;fontSize=10;fontStyle=1;fontColor=#333333;align=center;" vertex="1" parent="1">
+          <mxGeometry x="280" y="110" width="100" height="15" as="geometry"/>
+        </mxCell>
+        <mxCell id="note1" value="More KV cache = more concurrent requests" style="text;html=1;fontSize=10;fontStyle=2;fontColor=#548235;align=center;" vertex="1" parent="1">
+          <mxGeometry x="230" y="135" width="300" height="15" as="geometry"/>
+        </mxCell>
+        <mxCell id="note2" value="--gpu-memory-utilization 0.9 means: use 90% of GPU for weights+cache, keep 10% free" style="text;html=1;fontSize=9;fontStyle=2;fontColor=#666666;align=center;" vertex="1" parent="1">
+          <mxGeometry x="100" y="160" width="500" height="15" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

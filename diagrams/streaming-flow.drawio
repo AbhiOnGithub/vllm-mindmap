@@ -1,0 +1,67 @@
+<mxfile host="draw.io" modified="2026-02-15" agent="vllm-mindmap" version="24.0.0" type="device">
+  <diagram id="stream" name="Streaming Flow">
+    <mxGraphModel dx="800" dy="300" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="800" pageHeight="260" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="Streaming vs Non-Streaming Response" style="text;html=1;fontSize=14;fontStyle=1;align=center;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="200" y="8" width="400" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="ns_lbl" value="Non-Streaming" style="text;html=1;fontSize=11;fontStyle=1;fontColor=#CC0000;align=center;" vertex="1" parent="1">
+          <mxGeometry x="30" y="40" width="120" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="ns_wait" value="Client waits..." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#A5A5A5;fontColor=#FFFFFF;strokeColor=#757575;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="30" y="65" width="350" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="ns_resp" value="Full response at once" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF4444;fontColor=#FFFFFF;strokeColor=#CC0000;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="65" width="150" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="ns_time" value="High latency (user sees nothing until done)" style="text;html=1;fontSize=9;fontStyle=2;fontColor=#CC0000;align=left;" vertex="1" parent="1">
+          <mxGeometry x="550" y="70" width="230" height="15" as="geometry"/>
+        </mxCell>
+        <mxCell id="s_lbl" value="Streaming (SSE)" style="text;html=1;fontSize=11;fontStyle=1;fontColor=#548235;align=center;" vertex="1" parent="1">
+          <mxGeometry x="30" y="115" width="120" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1" value="Hello" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=9;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="140" width="55" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2" value=", I'm" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=9;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="95" y="140" width="55" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3" value="an AI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=9;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="140" width="55" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4" value="assis" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=9;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="225" y="140" width="55" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5" value="tant." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=9;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="140" width="55" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="s6" value="How" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=9;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="355" y="140" width="45" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="s7" value="can I" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=9;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="410" y="140" width="50" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="s8" value="help?" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=9;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="470" y="140" width="50" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="s_done" value="[DONE]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=9;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="530" y="140" width="55" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="s_time" value="Low perceived latency (user sees tokens immediately)" style="text;html=1;fontSize=9;fontStyle=2;fontColor=#548235;align=left;" vertex="1" parent="1">
+          <mxGeometry x="600" y="148" width="190" height="15" as="geometry"/>
+        </mxCell>
+        <mxCell id="s_arrows" style="endArrow=classic;strokeColor=#548235;strokeWidth=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="30" y="195" as="sourcePoint"/>
+            <mxPoint x="590" y="195" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="time_lbl" value="time (each chunk sent as SSE event)" style="text;html=1;fontSize=9;fontStyle=2;fontColor=#666666;align=center;" vertex="1" parent="1">
+          <mxGeometry x="200" y="198" width="250" height="12" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

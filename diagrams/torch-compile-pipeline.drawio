@@ -1,0 +1,38 @@
+<mxfile host="draw.io" modified="2026-02-15" agent="vllm-mindmap" version="24.0.0" type="device">
+  <diagram id="tc" name="torch.compile Pipeline">
+    <mxGraphModel dx="900" dy="280" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="900" pageHeight="230" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="torch.compile Pipeline in vLLM" style="text;html=1;fontSize=14;fontStyle=1;align=center;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="250" y="8" width="400" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1" value="Python&#xa;Model Code" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="55" width="110" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2" value="Dynamo&#xa;(trace bytecode&#xa;to FX graph)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=9;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="165" y="50" width="120" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3" value="Custom Passes&#xa;(fuse ops, optimize)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7030A0;fontColor=#FFFFFF;strokeColor=#4A1F6B;fontSize=9;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="50" width="130" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4" value="Inductor&#xa;(FX graph to&#xa;GPU kernels)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=9;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="485" y="50" width="120" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5" value="Compiled&#xa;Kernels&#xa;(cached on disk)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="50" width="120" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="e1" style="rounded=1;strokeColor=#C55A11;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="s1" target="s2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e2" style="rounded=1;strokeColor=#4A1F6B;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="s2" target="s3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3" style="rounded=1;strokeColor=#548235;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="s3" target="s4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e4" style="rounded=1;strokeColor=#548235;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="s4" target="s5"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="passes" value="fuse_norm_quant | fuse_act_quant | fuse_allreduce_rms | fuse_gemm_comms" style="text;html=1;fontSize=8;fontStyle=2;fontColor=#4A1F6B;align=center;" vertex="1" parent="1">
+          <mxGeometry x="270" y="110" width="330" height="12" as="geometry"/>
+        </mxCell>
+        <mxCell id="cache_note" value="First run: slow (compiles). Subsequent runs: instant (cached)." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFC000;fontColor=#333333;strokeColor=#BF9000;fontSize=9;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="140" width="400" height="25" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

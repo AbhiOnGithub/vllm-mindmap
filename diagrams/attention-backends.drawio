@@ -1,0 +1,103 @@
+<mxfile host="65bd71144e">
+    <diagram id="attn-be" name="Attention Backends">
+        <mxGraphModel dx="1268" dy="715" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="550" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="vLLM Attention Backend Selection" style="text;html=1;fontSize=18;fontStyle=1;align=center;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="300" width="600" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="start" value="Backend&#10;Selection" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=13;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="30" y="130" width="120" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="dec_mla" value="MLA&#10;model?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFC000;fontColor=#333333;strokeColor=#BF9000;fontSize=11;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="200" y="130" width="110" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="mla_group" value="MLA Backends (DeepSeek-style)" style="text;html=1;fontSize=11;fontStyle=1;fontColor=#4A1F6B;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="360" y="20" width="250" height="18" as="geometry"/>
+                </mxCell>
+                <mxCell id="mla1" value="FLASHINFER_MLA" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7030A0;fontColor=#FFFFFF;strokeColor=#4A1F6B;fontSize=10;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="360" y="45" width="140" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="mla2" value="TRITON_MLA" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7030A0;fontColor=#FFFFFF;strokeColor=#4A1F6B;fontSize=10;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="510" y="45" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="mla3" value="CUTLASS_MLA" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7030A0;fontColor=#FFFFFF;strokeColor=#4A1F6B;fontSize=10;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="640" y="45" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="mla4" value="FLASHMLA" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7030A0;fontColor=#FFFFFF;strokeColor=#4A1F6B;fontSize=10;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="770" y="45" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="dec_plat" value="Platform?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFC000;fontColor=#333333;strokeColor=#BF9000;fontSize=11;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="200" y="260" width="110" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="nvidia_label" value="NVIDIA" style="text;html=1;fontSize=11;fontStyle=1;fontColor=#548235;" parent="1" vertex="1">
+                    <mxGeometry x="370" y="210" width="60" height="18" as="geometry"/>
+                </mxCell>
+                <mxCell id="nv1" value="FLASH_ATTN" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=10;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="360" y="230" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="nv2" value="FLASHINFER" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=10;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="490" y="230" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="nv3" value="TRITON_ATTN" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=10;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="620" y="230" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="nv4" value="FLEX_ATTENTION" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=10;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="750" y="230" width="130" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="amd_label" value="AMD" style="text;html=1;fontSize=11;fontStyle=1;fontColor=#C55A11;" parent="1" vertex="1">
+                    <mxGeometry x="370" y="280" width="50" height="18" as="geometry"/>
+                </mxCell>
+                <mxCell id="amd1" value="ROCM_ATTN" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=10;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="360" y="300" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="amd2" value="ROCM_AITER" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=10;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="490" y="300" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="cpu_label" value="CPU / TPU" style="text;html=1;fontSize=11;fontStyle=1;fontColor=#757575;" parent="1" vertex="1">
+                    <mxGeometry x="370" y="350" width="80" height="18" as="geometry"/>
+                </mxCell>
+                <mxCell id="cpu1" value="TORCH_SDPA" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#A5A5A5;fontColor=#FFFFFF;strokeColor=#757575;fontSize=10;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="360" y="370" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="mamba_box" value="Non-Attention Backends" style="text;html=1;fontSize=11;fontStyle=1;fontColor=#C55A11;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="900" y="190" width="180" height="18" as="geometry"/>
+                </mxCell>
+                <mxCell id="mb1" value="MAMBA1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="910" y="215" width="80" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="mb2" value="MAMBA2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1000" y="215" width="80" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="mb3" value="LINEAR" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="910" y="250" width="80" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="mb4" value="SHORT_CONV" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=10;" parent="1" vertex="1">
+                    <mxGeometry x="1000" y="250" width="90" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="e1" style="rounded=1;strokeColor=#2F5496;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="start" target="dec_mla" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e2" value="Yes" style="rounded=1;strokeColor=#4A1F6B;strokeWidth=2;fontColor=#4A1F6B;fontStyle=1;exitX=0.5;exitY=0;entryX=0;entryY=0.5;" parent="1" source="dec_mla" target="mla1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e3" value="No" style="rounded=1;strokeColor=#BF9000;strokeWidth=2;fontColor=#BF9000;fontStyle=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" parent="1" source="dec_mla" target="dec_plat" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e4" style="rounded=1;strokeColor=#548235;strokeWidth=2;exitX=1;exitY=0.3;entryX=0;entryY=0.5;" parent="1" source="dec_plat" target="nv1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e5" style="rounded=1;strokeColor=#C55A11;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" parent="1" source="dec_plat" target="amd1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e6" style="rounded=1;strokeColor=#757575;strokeWidth=2;exitX=1;exitY=0.7;entryX=0;entryY=0.5;" parent="1" source="dec_plat" target="cpu1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="footer" value="Ref: docs.vllm.ai/en/latest/ → Design Documents → Attention Backend Feature Support" style="text;html=1;fontSize=9;fontStyle=2;fontColor=#A5A5A5;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="430" width="500" height="15" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

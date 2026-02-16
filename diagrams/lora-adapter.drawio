@@ -1,0 +1,78 @@
+<mxfile host="draw.io" modified="2026-02-15" agent="vllm-mindmap" version="24.0.0" type="device">
+  <diagram id="lora" name="LoRA Adapters">
+    <mxGraphModel dx="1000" dy="500" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="420" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="LoRA: Lightweight Fine-Tuning with Adapters" style="text;html=1;fontSize=16;fontStyle=1;align=center;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="200" y="10" width="600" height="25" as="geometry"/>
+        </mxCell>
+        <!-- Base model -->
+        <mxCell id="base" value="Base Model&#xa;(Frozen Weights W)&#xa;e.g., Llama-3.1-8B" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="70" width="200" height="70" as="geometry"/>
+        </mxCell>
+        <!-- Plus -->
+        <mxCell id="plus" value="+" style="text;html=1;fontSize=28;fontStyle=1;fontColor=#333333;align=center;" vertex="1" parent="1">
+          <mxGeometry x="270" y="85" width="40" height="40" as="geometry"/>
+        </mxCell>
+        <!-- LoRA matrices -->
+        <mxCell id="lora_box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#548235;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="50" width="280" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="lora_title" value="LoRA Adapter (tiny)" style="text;html=1;fontSize=11;fontStyle=1;fontColor=#548235;align=center;" vertex="1" parent="1">
+          <mxGeometry x="370" y="55" width="180" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="matA" value="Matrix A&#xa;(4096 x 16)&#xa;Down-project" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="335" y="80" width="110" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="matB" value="Matrix B&#xa;(16 x 4096)&#xa;Up-project" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="475" y="80" width="110" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="ab_arrow" style="rounded=1;strokeColor=#548235;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="matA" target="matB"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <!-- Equals -->
+        <mxCell id="eq" value="=" style="text;html=1;fontSize=28;fontStyle=1;fontColor=#333333;align=center;" vertex="1" parent="1">
+          <mxGeometry x="620" y="85" width="40" height="40" as="geometry"/>
+        </mxCell>
+        <!-- Result -->
+        <mxCell id="result" value="Customized Model&#xa;W + alpha * (B x A)&#xa;e.g., Medical assistant" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7030A0;fontColor=#FFFFFF;strokeColor=#4A1F6B;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="670" y="70" width="210" height="70" as="geometry"/>
+        </mxCell>
+        <!-- Size comparison -->
+        <mxCell id="size_base" value="Base: 16 GB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="200" width="300" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="size_lora" value="LoRA: ~50 MB (0.3%)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="245" width="60" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="size_label" value="Adapter is tiny compared to base model!" style="text;html=1;fontSize=10;fontStyle=2;fontColor=#333333;align=left;" vertex="1" parent="1">
+          <mxGeometry x="170" y="250" width="250" height="18" as="geometry"/>
+        </mxCell>
+        <!-- Multi-LoRA -->
+        <mxCell id="multi_title" value="Multi-LoRA Serving" style="text;html=1;fontSize=12;fontStyle=1;fontColor=#C55A11;align=center;" vertex="1" parent="1">
+          <mxGeometry x="560" y="200" width="200" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="ml_base" value="Base Model&#xa;(shared)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="560" y="230" width="100" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="ml_a1" value="LoRA: Medical" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="690" y="220" width="100" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="ml_a2" value="LoRA: Legal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="690" y="253" width="100" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="ml_a3" value="LoRA: Code" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="690" y="286" width="100" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="ml_e1" style="rounded=1;strokeColor=#C55A11;strokeWidth=1;exitX=1;exitY=0.3;entryX=0;entryY=0.5;" edge="1" parent="1" source="ml_base" target="ml_a1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ml_e2" style="rounded=1;strokeColor=#C55A11;strokeWidth=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="ml_base" target="ml_a2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ml_e3" style="rounded=1;strokeColor=#C55A11;strokeWidth=1;exitX=1;exitY=0.7;entryX=0;entryY=0.5;" edge="1" parent="1" source="ml_base" target="ml_a3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ml_note" value="Different requests use different adapters simultaneously" style="text;html=1;fontSize=9;fontStyle=2;fontColor=#666666;align=center;" vertex="1" parent="1">
+          <mxGeometry x="560" y="320" width="300" height="15" as="geometry"/>
+        </mxCell>
+        <mxCell id="footer" value="Ref: docs.vllm.ai/en/latest/features/lora.html" style="text;html=1;fontSize=9;fontStyle=2;fontColor=#A5A5A5;align=center;" vertex="1" parent="1">
+          <mxGeometry x="300" y="370" width="300" height="15" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

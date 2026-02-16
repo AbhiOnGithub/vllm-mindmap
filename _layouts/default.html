@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }} | {{ site.title }}</title>
+  <style>
+    /* ===== Light Theme (default) ===== */
+    :root,
+    [data-theme="light"] {
+      --bg: #ffffff;
+      --text: #24292e;
+      --text-secondary: #586069;
+      --sidebar-bg: #f6f8fa;
+      --sidebar-border: #e1e4e8;
+      --link: #0366d6;
+      --link-hover: #0245a0;
+      --nav-active: #0366d6;
+      --nav-active-bg: #e8f0fe;
+      --header-bg: #24292e;
+      --header-text: #ffffff;
+      --code-bg: #f6f8fa;
+      --code-text: #24292e;
+      --table-border: #dfe2e5;
+      --table-stripe: #f6f8fa;
+      --table-header-bg: #f1f3f5;
+      --toggle-bg: #d1d5da;
+      --toggle-knob: #ffffff;
+      --img-bg: #ffffff;
+      --shadow: rgba(0,0,0,0.1);
+    }
+
+    /* ===== Dark Theme ===== */
+    [data-theme="dark"] {
+      --bg: #0d1117;
+      --text: #e6edf3;
+      --text-secondary: #8b949e;
+      --sidebar-bg: #161b22;
+      --sidebar-border: #30363d;
+      --link: #58a6ff;
+      --link-hover: #79c0ff;
+      --nav-active: #58a6ff;
+      --nav-active-bg: #1c2433;
+      --header-bg: #010409;
+      --header-text: #f0f6fc;
+      --code-bg: #1b2028;
+      --code-text: #e6edf3;
+      --table-border: #30363d;
+      --table-stripe: #161b22;
+      --table-header-bg: #1c2128;
+      --toggle-bg: #58a6ff;
+      --toggle-knob: #0d1117;
+      --img-bg: #22272e;
+      --shadow: rgba(0,0,0,0.4);
+    }
+
+    /* ===== Auto: follow system preference ===== */
+    @media (prefers-color-scheme: dark) {
+      [data-theme="auto"] {
+        --bg: #0d1117;
+        --text: #e6edf3;
+        --text-secondary: #8b949e;
+        --sidebar-bg: #161b22;
+        --sidebar-border: #30363d;
+        --link: #58a6ff;
+        --link-hover: #79c0ff;
+        --nav-active: #58a6ff;
+        --nav-active-bg: #1c2433;
+        --header-bg: #010409;
+        --header-text: #f0f6fc;
+        --code-bg: #1b2028;
+        --code-text: #e6edf3;
+        --table-border: #30363d;
+        --table-stripe: #161b22;
+        --table-header-bg: #1c2128;
+        --toggle-bg: #58a6ff;
+        --toggle-knob: #0d1117;
+        --img-bg: #22272e;
+        --shadow: rgba(0,0,0,0.4);
+      }
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    /* ===== Header ===== */
+    .site-header {
+      background: var(--header-bg);
+      color: var(--header-text);
+      padding: 0.7rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 3px var(--shadow);
+    }
+    .site-header .site-title {
+      color: var(--header-text);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .site-header .site-title:hover { opacity: 0.85; }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+    .header-nav a {
+      color: var(--header-text);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 400;
+      opacity: 0.85;
+    }
+    .header-nav a:hover { opacity: 1; }
+
+    /* ===== Theme Toggle ===== */
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      user-select: none;
+    }
+    .theme-toggle .toggle-label {
+      font-size: 0.78rem;
+      color: var(--header-text);
+      opacity: 0.7;
+    }
+    .theme-toggle .toggle-track {
+      width: 44px;
+      height: 24px;
+      background: var(--toggle-bg);
+      border-radius: 12px;
+      position: relative;
+      transition: background 0.3s;
+    }
+    .theme-toggle .toggle-knob {
+      width: 20px;
+      height: 20px;
+      background: var(--toggle-knob);
+      border-radius: 50%;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      transition: transform 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+    [data-theme="dark"] .theme-toggle .toggle-knob,
+    [data-theme="auto"] .theme-toggle .toggle-knob {
+      transform: translateX(20px);
+    }
+    @media (prefers-color-scheme: light) {
+      [data-theme="auto"] .theme-toggle .toggle-knob {
+        transform: translateX(0);
+      }
+    }
+
+    /* ===== Layout ===== */
+    .page-wrapper {
+      display: flex;
+      min-height: calc(100vh - 50px);
+    }
+
+    /* ===== Sidebar ===== */
+    .sidebar {
+      width: 260px;
+      min-width: 260px;
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--sidebar-border);
+      padding: 1.2rem 0;
+      overflow-y: auto;
+      position: sticky;
+      top: 50px;
+      height: calc(100vh - 50px);
+      transition: background 0.3s;
+    }
+    .sidebar h3 {
+      padding: 0 1.2rem;
+      margin-bottom: 0.6rem;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-secondary);
+    }
+    .sidebar ul { list-style: none; }
+    .sidebar li a {
+      display: block;
+      padding: 0.35rem 1.2rem;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.85rem;
+      border-left: 3px solid transparent;
+      transition: all 0.15s;
+    }
+    .sidebar li a:hover {
+      background: var(--nav-active-bg);
+      color: var(--link);
+    }
+    .sidebar li a.active {
+      border-left-color: var(--nav-active);
+      background: var(--nav-active-bg);
+      color: var(--nav-active);
+      font-weight: 600;
+    }
+
+    /* ===== Main Content ===== */
+    .main-content {
+      flex: 1;
+      padding: 2rem 3rem;
+      max-width: 100%;
+      overflow-x: auto;
+      transition: background 0.3s;
+    }
+
+    /* Typography */
+    .main-content h1 {
+      font-size: 2rem;
+      margin: 0 0 1rem;
+      border-bottom: 1px solid var(--sidebar-border);
+      padding-bottom: 0.5rem;
+    }
+    .main-content h2 {
+      font-size: 1.5rem;
+      margin: 2rem 0 0.8rem;
+      border-bottom: 1px solid var(--sidebar-border);
+      padding-bottom: 0.3rem;
+    }
+    .main-content h3 { font-size: 1.2rem; margin: 1.5rem 0 0.6rem; }
+    .main-content p { margin: 0.6rem 0; }
+    .main-content a { color: var(--link); text-decoration: none; }
+    .main-content a:hover { color: var(--link-hover); text-decoration: underline; }
+    .main-content strong { color: var(--text); }
+
+    /* Images - diagrams always get a light background for readability */
+    .main-content img {
+      max-width: 100%;
+      height: auto;
+      margin: 1rem 0;
+      border-radius: 8px;
+      background: #ffffff;
+      padding: 12px;
+      border: 1px solid var(--sidebar-border);
+      box-shadow: 0 2px 8px var(--shadow);
+    }
+
+    /* Blockquotes */
+    .main-content blockquote {
+      border-left: 4px solid var(--link);
+      padding: 0.5rem 1rem;
+      margin: 1rem 0;
+      background: var(--sidebar-bg);
+      border-radius: 0 6px 6px 0;
+      color: var(--text-secondary);
+    }
+
+    /* Code */
+    .main-content code {
+      background: var(--code-bg);
+      color: var(--code-text);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.86em;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    .main-content pre {
+      background: var(--code-bg);
+      color: var(--code-text);
+      padding: 1rem 1.2rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 1rem 0;
+      border: 1px solid var(--sidebar-border);
+    }
+    .main-content pre code {
+      background: none;
+      padding: 0;
+      border-radius: 0;
+    }
+
+    /* Tables */
+    .main-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+    .main-content th, .main-content td {
+      border: 1px solid var(--table-border);
+      padding: 0.5rem 0.8rem;
+      text-align: left;
+    }
+    .main-content th {
+      background: var(--table-header-bg);
+      font-weight: 600;
+    }
+    .main-content tr:nth-child(even) {
+      background: var(--table-stripe);
+    }
+
+    /* Lists */
+    .main-content ul, .main-content ol {
+      margin: 0.5rem 0 0.5rem 1.5rem;
+    }
+    .main-content li { margin: 0.2rem 0; }
+
+    /* Horizontal rules */
+    .main-content hr {
+      border: none;
+      border-top: 1px solid var(--sidebar-border);
+      margin: 2rem 0;
+    }
+
+    /* ===== Mobile ===== */
+    @media (max-width: 768px) {
+      .page-wrapper { flex-direction: column; }
+      .sidebar {
+        width: 100%;
+        min-width: unset;
+        position: relative;
+        top: 0;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--sidebar-border);
+        padding: 0.8rem 0;
+      }
+      .main-content { padding: 1.5rem 1rem; }
+      .site-header { padding: 0.6rem 1rem; }
+      .header-nav a { font-size: 0.8rem; }
+      .theme-toggle .toggle-label { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+    <div class="header-right">
+      <nav class="header-nav">
+        <a href="{{ '/' | relative_url }}">Home</a>
+        <a href="https://docs.vllm.ai/en/latest/" target="_blank">vLLM Docs</a>
+        <a href="https://github.com/AbhiOnGithub/vllm-mindmap" target="_blank">GitHub</a>
+      </nav>
+      <div class="theme-toggle" onclick="toggleTheme()" title="Toggle dark/light theme">
+        <span class="toggle-label">Theme</span>
+        <div class="toggle-track">
+          <div class="toggle-knob" id="toggleKnob"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="page-wrapper">
+    <nav class="sidebar">
+      <h3>Mind-Map Index</h3>
+      <ul>
+        <li><a href="{{ '/' | relative_url }}" {% if page.url == '/' or page.url == '/index.html' %}class="active"{% endif %}>Home</a></li>
+        <li><a href="{{ '/ARCHITECTURE' | relative_url }}" {% if page.title == 'Architecture Overview' %}class="active"{% endif %}>Architecture Overview</a></li>
+        <li><a href="{{ '/REQUEST-LIFECYCLE' | relative_url }}" {% if page.title == 'Request Lifecycle' %}class="active"{% endif %}>Request Lifecycle</a></li>
+        <li><a href="{{ '/SCHEDULING-KV-CACHE' | relative_url }}" {% if page.title == 'Scheduling & KV Cache' %}class="active"{% endif %}>Scheduling & KV Cache</a></li>
+        <li><a href="{{ '/MODEL-SYSTEM' | relative_url }}" {% if page.title == 'Model System' %}class="active"{% endif %}>Model System</a></li>
+        <li><a href="{{ '/ATTENTION-BACKENDS' | relative_url }}" {% if page.title == 'Attention Backends' %}class="active"{% endif %}>Attention Backends</a></li>
+        <li><a href="{{ '/QUANTIZATION' | relative_url }}" {% if page.title == 'Quantization' %}class="active"{% endif %}>Quantization</a></li>
+        <li><a href="{{ '/DISTRIBUTED' | relative_url }}" {% if page.title == 'Distributed Inference' %}class="active"{% endif %}>Distributed Inference</a></li>
+        <li><a href="{{ '/COMPILATION' | relative_url }}" {% if page.title == 'Compilation & Performance' %}class="active"{% endif %}>Compilation & Performance</a></li>
+        <li><a href="{{ '/API-SERVING' | relative_url }}" {% if page.title == 'API & Serving' %}class="active"{% endif %}>API & Serving</a></li>
+        <li><a href="{{ '/ADVANCED-FEATURES' | relative_url }}" {% if page.title == 'Advanced Features' %}class="active"{% endif %}>Advanced Features</a></li>
+        <li><a href="{{ '/CONFIGURATION' | relative_url }}" {% if page.title == 'Configuration Reference' %}class="active"{% endif %}>Configuration Reference</a></li>
+        <li><a href="{{ '/CODEBASE-MAP' | relative_url }}" {% if page.title == 'Codebase Map' %}class="active"{% endif %}>Codebase Map</a></li>
+      </ul>
+    </nav>
+
+    <main class="main-content">
+      {{ content }}
+    </main>
+  </div>
+
+  <script>
+    function getTheme() {
+      return localStorage.getItem('theme') || 'auto';
+    }
+
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      updateKnob(theme);
+    }
+
+    function updateKnob(theme) {
+      var knob = document.getElementById('toggleKnob');
+      if (!knob) return;
+      var isDark = theme === 'dark' ||
+        (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      knob.textContent = isDark ? '\u{1F319}' : '\u{2600}\u{FE0F}';
+    }
+
+    function toggleTheme() {
+      var current = getTheme();
+      var isDarkNow = current === 'dark' ||
+        (current === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      applyTheme(isDarkNow ? 'light' : 'dark');
+    }
+
+    // Initialize on load
+    applyTheme(getTheme());
+
+    // Listen for system theme changes when in auto mode
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
+      if (getTheme() === 'auto') updateKnob('auto');
+    });
+  </script>
+
+</body>
+</html>

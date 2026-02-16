@@ -1,0 +1,7 @@
+title: vLLM Mind-Map
+description: A deep structural map of vLLM internals for newcomers
+url: https://abhiongithub.github.io
+baseurl: /vllm-mindmap
+
+markdown: kramdown
+highlighter: rouge

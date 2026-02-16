@@ -1,0 +1,51 @@
+<mxfile host="draw.io" modified="2026-02-15" agent="vllm-mindmap" version="24.0.0" type="device">
+  <diagram id="config-dec" name="Configuration Decision Guide">
+    <mxGraphModel dx="1100" dy="700" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="600" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="vLLM Configuration Decision Guide" style="text;html=1;fontSize=18;fontStyle=1;align=center;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="250" y="10" width="600" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="start" value="What are you&#xa;trying to do?" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="55" width="160" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="fit" value="Fit model&#xa;in GPU memory" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFC000;fontColor=#333333;strokeColor=#BF9000;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="160" width="140" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="speed" value="Make it&#xa;faster" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFC000;fontColor=#333333;strokeColor=#BF9000;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="350" y="160" width="140" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="throughput" value="Handle more&#xa;requests" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFC000;fontColor=#333333;strokeColor=#BF9000;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="160" width="140" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="cost" value="Reduce&#xa;cost" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFC000;fontColor=#333333;strokeColor=#BF9000;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="930" y="160" width="120" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="fit_opts" value="--quantization fp8&#xa;--tensor-parallel-size N&#xa;--max-model-len (lower)&#xa;--gpu-memory-utilization 0.95&#xa;--kv-cache-dtype fp8" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=10;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="20" y="270" width="220" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="speed_opts" value="--compilation-config level=3&#xa;(CUDA graphs enabled)&#xa;--enable-prefix-caching&#xa;--speculative-model draft&#xa;--num-speculative-tokens 5" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=10;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="300" y="270" width="230" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="thr_opts" value="--data-parallel-size N&#xa;--max-num-seqs 512&#xa;--max-num-batched-tokens 4096&#xa;--enable-chunked-prefill&#xa;--api-server-count 4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=10;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="590" y="270" width="230" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="cost_opts" value="--quantization fp8 (half mem)&#xa;--kv-cache-dtype fp8&#xa;Use fewer/smaller GPUs&#xa;Prefix caching (save compute)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=10;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="880" y="270" width="210" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="e1" style="rounded=1;strokeColor=#2F5496;strokeWidth=2;exitX=0;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="start" target="fit"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e2" style="rounded=1;strokeColor=#2F5496;strokeWidth=2;exitX=0.3;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="start" target="speed"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3" style="rounded=1;strokeColor=#2F5496;strokeWidth=2;exitX=0.7;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="start" target="throughput"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e4" style="rounded=1;strokeColor=#2F5496;strokeWidth=2;exitX=1;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="start" target="cost"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#548235;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="fit" target="fit_opts"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#548235;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="speed" target="speed_opts"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#548235;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="throughput" target="thr_opts"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#548235;strokeWidth=2;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="cost" target="cost_opts"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="footer" value="Ref: docs.vllm.ai/en/latest/configuration/" style="text;html=1;fontSize=9;fontStyle=2;fontColor=#A5A5A5;align=center;" vertex="1" parent="1">
+          <mxGeometry x="350" y="400" width="300" height="15" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

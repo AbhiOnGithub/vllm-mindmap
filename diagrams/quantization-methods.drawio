@@ -1,0 +1,79 @@
+<mxfile host="65bd71144e">
+    <diagram id="quantization-methods" name="Quantization Methods">
+        <mxGraphModel dx="870" dy="552" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="900" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="vLLM Quantization Methods" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=18;fontStyle=1;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="400" y="20" width="600" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="group_4bit" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#4A1F6B;strokeWidth=2;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="80" width="630" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="header_4bit" value="Weight-Only 4-bit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7030A0;fontColor=#FFFFFF;strokeColor=#4A1F6B;fontStyle=1;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="80" width="620" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="gptq" value="GPTQ_Marlin&#10;4-bit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7030A0;fontColor=#FFFFFF;strokeColor=#4A1F6B;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="140" width="110" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="awq" value="AWQ_Marlin&#10;4-bit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7030A0;fontColor=#FFFFFF;strokeColor=#4A1F6B;" parent="1" vertex="1">
+                    <mxGeometry x="185" y="140" width="110" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="nvfp4" value="NVFP4&#10;4-bit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7030A0;fontColor=#FFFFFF;strokeColor=#4A1F6B;" parent="1" vertex="1">
+                    <mxGeometry x="310" y="140" width="110" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="bnb" value="BitsAndBytes&#10;4-bit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7030A0;fontColor=#FFFFFF;strokeColor=#4A1F6B;" parent="1" vertex="1">
+                    <mxGeometry x="430" y="140" width="110" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="gguf" value="GGUF&#10;4-bit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7030A0;fontColor=#FFFFFF;strokeColor=#4A1F6B;" parent="1" vertex="1">
+                    <mxGeometry x="550" y="140" width="110" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="group_8bit" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#2F5496;strokeWidth=2;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="700" y="80" width="260" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="header_8bit" value="Weight-Only 8-bit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontStyle=1;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="700" y="80" width="260" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="int8" value="INT8&#10;8-bit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;" parent="1" vertex="1">
+                    <mxGeometry x="775" y="140" width="110" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="group_wa" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#548235;strokeWidth=2;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="310" width="620" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="header_wa" value="Weight + Activation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontStyle=1;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="40" y="310" width="620" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="fp8" value="FP8&#10;8-bit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;" parent="1" vertex="1">
+                    <mxGeometry x="60" y="370" width="110" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="mxfp4" value="MXFP4&#10;4-bit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;" parent="1" vertex="1">
+                    <mxGeometry x="185" y="370" width="110" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="mxfp6" value="MXFP6&#10;6-bit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;" parent="1" vertex="1">
+                    <mxGeometry x="310" y="370" width="110" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="mxfp8" value="MXFP8&#10;8-bit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;" parent="1" vertex="1">
+                    <mxGeometry x="435" y="370" width="110" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="group_kv" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#C55A11;strokeWidth=2;dashed=1;" parent="1" vertex="1">
+                    <mxGeometry x="700" y="310" width="260" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="header_kv" value="KV Cache" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontStyle=1;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="700" y="310" width="260" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="fp8e4m3" value="FP8_E4M3&#10;8-bit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;" parent="1" vertex="1">
+                    <mxGeometry x="720" y="370" width="110" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="fp8e5m2" value="FP8_E5M2&#10;8-bit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;" parent="1" vertex="1">
+                    <mxGeometry x="840" y="370" width="110" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="insight" value="💡 50% memory saving with FP8 KV cache, near-lossless for most models" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7030A0;fontColor=#FFFFFF;strokeColor=#4A1F6B;fontStyle=1;fontSize=13;align=center;" parent="1" vertex="1">
+                    <mxGeometry x="200" y="550" width="600" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="footer" value="Ref: docs.vllm.ai/en/latest/quantization/" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=9;fontStyle=2;fontColor=#A5A5A5;" parent="1" vertex="1">
+                    <mxGeometry x="350" y="620" width="300" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

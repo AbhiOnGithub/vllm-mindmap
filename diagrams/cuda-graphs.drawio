@@ -1,0 +1,160 @@
+<mxfile host="draw.io" modified="2026-02-15" agent="draw.io" version="24.0.0" type="device">
+  <diagram id="cuda-graphs" name="CUDA Graphs">
+    <mxGraphModel dx="1422" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Title -->
+        <mxCell id="title" value="CUDA Graph Optimization in vLLM" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=18;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="350" y="20" width="700" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== Left Panel: Without CUDA Graphs ==================== -->
+        <mxCell id="left_border" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#2F5496;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="300" height="450" as="geometry" />
+        </mxCell>
+        <mxCell id="left_title" value="❌ Without CUDA Graphs" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=14;fontStyle=1;fontColor=#CC0000;" vertex="1" parent="1">
+          <mxGeometry x="60" y="90" width="260" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cpu1" value="CPU: Launch Kernel 1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="80" y="135" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="oh1" value="⏱ CPU overhead" style="text;html=1;align=center;verticalAlign=middle;fontSize=9;fontStyle=2;fontColor=#CC0000;" vertex="1" parent="1">
+          <mxGeometry x="120" y="175" width="140" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="cpu2" value="CPU: Launch Kernel 2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="80" y="198" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="oh2" value="⏱ CPU overhead" style="text;html=1;align=center;verticalAlign=middle;fontSize=9;fontStyle=2;fontColor=#CC0000;" vertex="1" parent="1">
+          <mxGeometry x="120" y="238" width="140" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="cpu3" value="CPU: Launch Kernel 3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="80" y="261" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="oh3" value="⏱ CPU overhead" style="text;html=1;align=center;verticalAlign=middle;fontSize=9;fontStyle=2;fontColor=#CC0000;" vertex="1" parent="1">
+          <mxGeometry x="120" y="301" width="140" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="cpu4" value="CPU: Launch Kernel 4" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="80" y="324" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="oh4" value="⏱ CPU overhead" style="text;html=1;align=center;verticalAlign=middle;fontSize=9;fontStyle=2;fontColor=#CC0000;" vertex="1" parent="1">
+          <mxGeometry x="120" y="364" width="140" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="cpu5" value="CPU: Launch Kernel N..." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="80" y="387" width="220" height="40" as="geometry" />
+        </mxCell>
+        <!-- Arrows between CPU kernels -->
+        <mxCell id="c_e1" style="rounded=1;strokeColor=#2F5496;strokeWidth=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="cpu1" target="cpu2" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_e2" style="rounded=1;strokeColor=#2F5496;strokeWidth=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="cpu2" target="cpu3" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_e3" style="rounded=1;strokeColor=#2F5496;strokeWidth=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="cpu3" target="cpu4" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_e4" style="rounded=1;strokeColor=#2F5496;strokeWidth=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" source="cpu4" target="cpu5" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="left_slow" value="Slow: repeated CPU→GPU dispatch" style="text;html=1;align=center;verticalAlign=middle;fontSize=10;fontStyle=2;fontColor=#CC0000;" vertex="1" parent="1">
+          <mxGeometry x="70" y="440" width="240" height="25" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== Right Panel: With CUDA Graphs ==================== -->
+        <mxCell id="right_border" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#548235;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="80" width="300" height="450" as="geometry" />
+        </mxCell>
+        <mxCell id="right_title" value="✅ With CUDA Graphs" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=14;fontStyle=1;fontColor=#548235;" vertex="1" parent="1">
+          <mxGeometry x="400" y="90" width="260" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="warmup" value="Warmup Phase&#xa;Capture computation graph" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="420" y="140" width="220" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="w_e1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#548235;strokeWidth=2;" edge="1" source="warmup" target="replay" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="replay" value="Inference: graph.replay()&#xa;&#xa;All kernels execute as&#xa;single GPU operation&#xa;— no CPU overhead!" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="410" y="230" width="240" height="110" as="geometry" />
+        </mxCell>
+
+        <mxCell id="right_fast" value="Fast: single replay, zero dispatch cost" style="text;html=1;align=center;verticalAlign=middle;fontSize=10;fontStyle=2;fontColor=#548235;" vertex="1" parent="1">
+          <mxGeometry x="410" y="360" width="240" height="25" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== Bottom: Piecewise Mode ==================== -->
+        <mxCell id="pw_border" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#757575;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="560" width="1320" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="pw_title" value="Piecewise CUDA Graph Mode (vLLM default)" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=14;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="400" y="570" width="600" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cg1" value="CUDA Graph 1&#xa;(MLP + Norm)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="60" y="620" width="160" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="pw_e1" style="rounded=1;strokeColor=#333333;strokeWidth=2;" edge="1" source="cg1" target="attn1" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="attn1" value="Attention&#xa;(Dynamic Shape)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontStyle=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="280" y="620" width="160" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="pw_e2" style="rounded=1;strokeColor=#333333;strokeWidth=2;" edge="1" source="attn1" target="cg2" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cg2" value="CUDA Graph 2&#xa;(MLP + Norm)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="500" y="620" width="160" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="pw_e3" style="rounded=1;strokeColor=#333333;strokeWidth=2;" edge="1" source="cg2" target="attn2" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="attn2" value="Attention&#xa;(Dynamic Shape)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontStyle=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="720" y="620" width="160" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="pw_e4" style="rounded=1;strokeColor=#333333;strokeWidth=2;" edge="1" source="attn2" target="cg3" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cg3" value="CUDA Graph 3&#xa;(MLP + Norm)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="940" y="620" width="160" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="pw_e5" style="rounded=1;strokeColor=#333333;strokeWidth=2;" edge="1" source="cg3" target="cg_dots" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cg_dots" value="..." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#A5A5A5;fontColor=#FFFFFF;strokeColor=#757575;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="630" width="60" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="pw_note" value="Attention ops can't be captured (dynamic seq lengths) → split into piecewise segments" style="text;html=1;align=center;verticalAlign=middle;fontSize=10;fontStyle=2;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="300" y="690" width="600" height="25" as="geometry" />
+        </mxCell>
+
+        <!-- ==================== Comparison Box ==================== -->
+        <mxCell id="compare_border" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#4A1F6B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="720" y="100" width="300" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="compare_title" value="Performance Impact" style="text;html=1;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#4A1F6B;" vertex="1" parent="1">
+          <mxGeometry x="770" y="110" width="200" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="compare_1" value="• Decode latency: up to 2× faster" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="740" y="140" width="260" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="compare_2" value="• Eliminates CPU launch overhead" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="740" y="165" width="260" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="compare_3" value="• Batch sizes: 1, 2, 4, ... 256" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="740" y="190" width="260" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="compare_4" value="• Trades GPU memory for speed" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="740" y="215" width="260" height="25" as="geometry" />
+        </mxCell>
+
+        <!-- Footer -->
+        <mxCell id="footer" value="Ref: docs.vllm.ai/en/latest/design/cuda_graphs.html" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=9;fontStyle=2;fontColor=#A5A5A5;" vertex="1" parent="1">
+          <mxGeometry x="450" y="750" width="400" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

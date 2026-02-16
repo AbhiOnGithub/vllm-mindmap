@@ -1,0 +1,58 @@
+<mxfile host="draw.io" modified="2026-02-15" agent="vllm-mindmap" version="24.0.0" type="device">
+  <diagram id="pardec" name="Parallelism Decision Guide">
+    <mxGraphModel dx="1000" dy="600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="520" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="Which Parallelism Strategy Do I Need?" style="text;html=1;fontSize=18;fontStyle=1;align=center;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="200" y="10" width="600" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="q1" value="Does the model&#xa;fit on 1 GPU?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFC000;fontColor=#333333;strokeColor=#BF9000;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="370" y="60" width="160" height="75" as="geometry"/>
+        </mxCell>
+        <mxCell id="yes1" value="Yes" style="text;html=1;fontSize=11;fontStyle=1;fontColor=#548235;" vertex="1" parent="1">
+          <mxGeometry x="540" y="80" width="30" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="no1" value="No" style="text;html=1;fontSize=11;fontStyle=1;fontColor=#CC0000;" vertex="1" parent="1">
+          <mxGeometry x="335" y="140" width="30" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="q2" value="Need more&#xa;throughput?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFC000;fontColor=#333333;strokeColor=#BF9000;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="580" y="65" width="140" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="a_none" value="No parallelism needed!&#xa;Just run on 1 GPU" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#70AD47;fontColor=#FFFFFF;strokeColor=#548235;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="770" y="50" width="180" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="a_dp" value="Use Data Parallelism (DP)&#xa;--data-parallel-size N&#xa;Multiple model copies" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ED7D31;fontColor=#FFFFFF;strokeColor=#C55A11;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="770" y="110" width="200" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="q3" value="Is it an&#xa;MoE model?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFC000;fontColor=#333333;strokeColor=#BF9000;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="170" width="140" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="a_ep" value="Use Expert Parallelism (EP)&#xa;--tensor-parallel-size N&#xa;Experts split across GPUs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7030A0;fontColor=#FFFFFF;strokeColor=#4A1F6B;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="275" width="210" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="q4" value="Single node&#xa;(1 machine)?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFC000;fontColor=#333333;strokeColor=#BF9000;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="270" width="140" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="a_tp" value="Use Tensor Parallelism (TP)&#xa;--tensor-parallel-size N&#xa;Split layers across GPUs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="380" width="210" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="a_pp" value="Use Pipeline Parallelism (PP)&#xa;--pipeline-parallel-size N&#xa;Chain layers across nodes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4472C4;fontColor=#FFFFFF;strokeColor=#2F5496;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="380" width="220" height="55" as="geometry"/>
+        </mxCell>
+        <!-- Edges -->
+        <mxCell id="e1" style="rounded=1;strokeColor=#548235;strokeWidth=2;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="q1" target="q2"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e2" style="rounded=1;strokeColor=#CC0000;strokeWidth=2;exitX=0;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="q1" target="q3"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3" value="No" style="rounded=1;strokeColor=#548235;strokeWidth=2;fontColor=#548235;fontStyle=1;exitX=1;exitY=0.3;entryX=0;entryY=0.5;" edge="1" parent="1" source="q2" target="a_none"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e4" value="Yes" style="rounded=1;strokeColor=#C55A11;strokeWidth=2;fontColor=#C55A11;fontStyle=1;exitX=1;exitY=0.7;entryX=0;entryY=0.5;" edge="1" parent="1" source="q2" target="a_dp"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e5" value="Yes" style="rounded=1;strokeColor=#4A1F6B;strokeWidth=2;fontColor=#4A1F6B;fontStyle=1;exitX=0;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="q3" target="a_ep"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e6" value="No" style="rounded=1;strokeColor=#BF9000;strokeWidth=2;fontColor=#BF9000;fontStyle=1;exitX=1;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="q3" target="q4"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e7" value="Yes" style="rounded=1;strokeColor=#2F5496;strokeWidth=2;fontColor=#2F5496;fontStyle=1;exitX=0;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="q4" target="a_tp"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e8" value="No (multi-node)" style="rounded=1;strokeColor=#2F5496;strokeWidth=2;fontColor=#2F5496;fontStyle=1;exitX=1;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="q4" target="a_pp"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="footer" value="Ref: docs.vllm.ai/en/latest/serving/distributed_serving.html" style="text;html=1;fontSize=9;fontStyle=2;fontColor=#A5A5A5;align=center;" vertex="1" parent="1">
+          <mxGeometry x="300" y="460" width="350" height="15" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
